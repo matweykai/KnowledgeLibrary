@@ -1,0 +1,5 @@
+* Для того, чтобы всё хорошо воспроизводилось надо фиксировать
+  случайность не только на уровне CPU, но и GPU
+
+Статьи:
+ - https://learnopencv.com/ensuring-training-reproducibility-in-pytorch/
