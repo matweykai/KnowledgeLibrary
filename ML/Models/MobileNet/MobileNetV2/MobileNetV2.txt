@@ -1,0 +1,12 @@
+MobileNetV2 - это улучшение базовой версии MobileNet, которое 
+	      имеет более высокую точность и скорость
+
+* В данной модели были добавлены две новые концепции: Inverted 
+  Residual Blocks и Linear bottleneck
+
+* Она начала активно использоваться в задачах классификации и 
+  детекции
+
+Статьи:
+ - https://towardsdatascience.com/mobilenetv2-inverted-residuals-and-linear-bottlenecks-8a4362f4ffd5
+ - https://towardsdatascience.com/review-mobilenetv2-light-weight-model-image-classification-8febb490e61c
