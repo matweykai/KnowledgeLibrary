@@ -1,0 +1,16 @@
+SegNet - это encoder-decoder архитектура, которая используется для 
+	 сегментации
+
+* В качестве encoder'a в оригинальной статье используется VGG16,
+  и в декодер пробрасываются индексы максимальных элементов при 
+  использовании MaxPooling. И с их помощью выполняется Up sampling
+
+* Кол-во слоёв encoder'a и decoder'a равно
+
+* Преимущество SegNet над UNet в использовании предобученной сети
+
+* Есть реализации SegNet на разных архитектурах: MobileNet, ResNet 
+  и др
+
+Статьи:
+ - https://towardsdatascience.com/review-segnet-semantic-segmentation-e66f2e30fb96
