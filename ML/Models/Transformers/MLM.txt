@@ -1,0 +1,14 @@
+MLM(Masked Language Modeling) - подход к предобучению языковых моделей, таких
+				как BERT
+
+Алгоритм:
+	1) Получаем токены из текста
+	2) Маскируем часть из них (~15%)
+	3) Пытаемся предсказать замаскированные слова на основе контекста
+	4) Вычисляем loss, потом backprop
+
+* Loss вычисляется только на замаскированных словах, и применяется Cross 
+  Entropy loss
+
+Статьи:
+ - https://towardsdatascience.com/understanding-masked-language-models-mlm-and-causal-language-models-clm-in-nlp-194c15f56a5
