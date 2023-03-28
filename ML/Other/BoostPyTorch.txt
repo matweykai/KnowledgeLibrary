@@ -1,0 +1,2 @@
+Статьи по ускорению PyTorch:
+ - https://towardsdatascience.com/optimize-pytorch-performance-for-speed-and-memory-efficiency-2022-84f453916ea6
