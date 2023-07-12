@@ -1,0 +1,57 @@
+Морфологические операции - это один из методов предобработки изображений
+
+* Обычно такие операции используются с бинарными масками и могут помочь
+  правильно их изменить
+
+* Здесь kernel - это structuring element, который является по сути маской, в 
+  которой указаны пиксели, участвующие в операции
+
+
+Erosion (удаление) - зануляет текущий пиксель, если в его окрестности есть хотя 
+		бы один нулевой пиксель
+
+	cv2.erode(src, kernel, iterations)
+
+
+Dilation (расширение) - выставляет 1 в текущем пикселе, если в его окрестности
+		есть хотя бы один ненулевой пиксель
+
+	cv2.dilate(src, kernel, iterations)
+
+
+Opening (открытие) - последовательность применения erosion и dilation. Позволяет
+		убирать маленькие артефакты с изображения
+
+	cv2.morphologyEx(gray, cv2.MORPH_OPEN, kernel)
+
+
+Closing (закрытие) - последовательность применения dilation и erosion. Позволяет
+		стягивать пустоты внутри объектов
+
+	cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
+
+
+Morphological gradient - разность между dilation и erosion. Позволяет находить
+		контуры объектов
+
+	cv2.morphologyEx(gray, cv2.MORPH_GRADIENT, kernel)
+
+
+Top/white hat - разность между серым изображением и его opening. Позволяет 
+	выделять светлые области на чёрном фоне
+
+	cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, kernel)
+
+
+Black hat - противоположность white hat. Позволяет находить чёрные области на 
+	светлом фоне
+
+	cv2.morphologyEx(gray, cv2.MORPH_BLACKHAT, kernel)
+	
+
+* Данные операции могут применяться для детектирования различных контрастных
+  объектов (например штрихкодов или номеров автомобилей)
+
+Статьи:
+ - https://pyimagesearch.com/2021/04/28/opencv-morphological-operations/
+ - https://pyimagesearch.com/2014/11/24/detecting-barcodes-images-python-opencv/
