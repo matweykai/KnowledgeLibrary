@@ -1,0 +1,48 @@
+SegFormer - это архитектура сегментации, основанная на трансформерах. Она 
+	    показывает высокую скорость работы и высокое качество. Разработан в
+	    2021 году.
+
+
+Основные моменты:
+* SegFormer имеет 4 блока в Encoder'e, и лишь 1 в декодере. Основными элементами
+  являются: OverlapPatchEmbedding, SegFormer Block и OverlapPatchMerging.
+
+* SegFormer в реализации на PyTorch показывает RealTime скорости (30 - 60 FPS),
+  а большие модели превосходят по точности другие модели.
+
+* В SegFormer отсутствует позиционное кодирование, а информация о локальности
+  собирается в декодере.
+
+
+OverlapPatchEmbedding:
+* Данный блок сжимает изображение с помощью свёрток с kernel_size примерно
+  равным stride, но чуть больше (в отличии от ViT), чтобы информация из патчей
+  пересекалась и сохранялась локальность признаков
+
+* Полученную карту признаков размера (batch_size, H, W, C) переводят в тензор
+  размера (batch_size, H * W, C), переводя картинку в набор векторов
+
+* Данный блок в конце имеет LayerNorm
+
+
+SegformerBlock:
+* Данный блок похож на блок трансформера. Вместо MultiHeadSelfAttention 
+  используется более эффективная версия, которая сжимает Key и Value вектора
+  в несколько раз с определённым коэффициентом
+
+* Также есть блок Mix-FFN, который имеет структуру похожую на Inversed
+  BottleNeck из MobileNet архитектуры
+
+* Как и в трансформере используются skip connection и LayerNorm
+
+
+OverlapPatchMerging:
+* Данный блок используется для восстановления из вектора карты признаков. Он
+  содержит в себе LayerNorm и обычный reshape
+
+
+Полезные ссылки:
+ - https://github.com/ACSEkevin/An-Overview-of-Segformer-and-Details-Description
+ - https://medium.com/geekculture/semantic-segmentation-with-segformer-2501543d2be4
+ - https://arxiv.org/pdf/2105.15203.pdf
+ - https://hal.science/hal-04161509/document
