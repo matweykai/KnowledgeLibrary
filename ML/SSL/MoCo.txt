@@ -1,0 +1,25 @@
+MoCo(Momentum Contrast) - это улучшение архитектуры SimCLR, которое попыталось
+		снизить кол-во требуемого железа для выполнения обучения
+
+* В архитектуре есть 2 модели: query encoder и key encoder. Query encoder
+  обновляет свои веса с помощью градиентного спуска, а key encoder с помощью
+  EMA по формуле enc_k = (1 - lambda) * enc_q + lambda * enc_k
+
+* Также, чтобы расширить набор негативных примеров используется очередь из key
+  векторов. Они попадают в неё из key encoder в конце итерации и постепенно
+  удаляются, тк это очередь
+
+* Отличии от memory bank подхода MoCo постепенно обновляет вектора и не даёт им
+  застаиваться, что не мешает обучению модели
+
+* В конце берётся модель из query encoder
+
+* Алгоритм обновил функционал потерь с NT-XEnt loss из статьи о SimCLR на
+  InfoNCE, в котором вместо косинусной близости используется скалярное 
+  произведение векторов
+
+Полезные ссылки:
+ - https://paperswithcode.com/method/moco#:~:text=MoCo%2C%20or%20Momentum%20Contrast%2C%20is,represented%20by%20an%20encoder%20network.
+ - https://medium.com/@noureldinalaa93/easily-explained-momentum-contrast-for-unsupervised-visual-representation-learning-moco-c6f00a95c4b2
+ - https://medium.com/@nazimbendib/paper-explained-momentum-contrast-for-unsupervised-visual-representation-learning-moco-2b9e9aaffc1f
+ - https://arxiv.org/pdf/1911.05722.pdf
